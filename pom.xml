@@ -20,7 +20,7 @@
 
     <properties>
         <java.version>1.7</java.version>
-        <reference-auth-security.version>0.10-SNAPSHOT</reference-auth-security.version>
+        <reference-auth-security.version>0.10</reference-auth-security.version>
         <mitreid.version>1.2.0</mitreid.version>
         <springframework.version>4.1.7.RELEASE</springframework.version>
         <springframework.security.oauth.version>2.0.3.RELEASE</springframework.security.oauth.version>
@@ -70,26 +70,6 @@
             <version>${mitreid.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hspconsortium.reference</groupId>
-            <artifactId>hspc-reference-auth-security</artifactId>
-            <type>jar</type>
-            <version>${reference-auth-security.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-security-config</artifactId>
-                    <groupId>org.springframework.security</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-security-web</artifactId>
-                    <groupId>org.springframework.security</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>org.mitre</groupId>
             <artifactId>openid-connect-common</artifactId>
             <version>${mitreid.version}</version>
@@ -133,7 +113,7 @@
         <dependency>
             <groupId>org.hspconsortium.reference</groupId>
             <artifactId>hspc-reference-auth-security</artifactId>
-            <version>0.10-SNAPSHOT</version>
+            <version>${reference-auth-security.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>spring-security-config</artifactId>
@@ -142,6 +122,10 @@
                 <exclusion>
                     <artifactId>spring-security-web</artifactId>
                     <groupId>org.springframework.security</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
