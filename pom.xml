@@ -18,9 +18,9 @@
     <url>https://healthservices.atlassian.net/wiki/display/HSPC/Healthcare+Services+Platform+Consortium</url>
 
     <scm>
-        <connection>scm:git:ssh://git@bitbucket.org/hspconsortium/reference-auth-webapp.git</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org/hspconsortium/reference-auth-webapp.git</developerConnection>
-        <url>https://bitbucket.org/hspconsortium/reference-auth-webapp.git</url>
+        <connection>scm:git:ssh://git@bitbucket.org/hspconsortium/reference-auth-server-webapp.git</connection>
+        <developerConnection>scm:git:ssh://git@bitbucket.org/hspconsortium/reference-auth-server-webapp.git</developerConnection>
+        <url>https://bitbucket.org/hspconsortium/reference-auth-server-webapp.git</url>
         <tag>HEAD</tag>
     </scm>
 
