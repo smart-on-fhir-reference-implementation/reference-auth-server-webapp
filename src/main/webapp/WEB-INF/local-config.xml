@@ -32,7 +32,7 @@
 
     <!-- Empty: Override this file in your local project to change configuration options. -->
 
-    <bean id="smartClientUserDetailsService" class="org.smartplatforms.oauth2.service.impl.SmartClientUserDetailsService">
+    <bean id="smartClientUserDetailsService" class="org.smartplatforms.oauth2.SmartClientUserDetailsService">
         <property name="adminClients">
             <set>
                 <value>client</value>
