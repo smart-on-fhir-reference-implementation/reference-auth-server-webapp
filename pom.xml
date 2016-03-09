@@ -185,8 +185,4 @@
         </plugins>
     </build>
 
-
-  <scm>
-    <tag>hspc-reference-auth-server-webapp-0.10</tag>
-  </scm>
 </project>
