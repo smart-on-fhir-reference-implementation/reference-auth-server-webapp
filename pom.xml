@@ -26,18 +26,85 @@
 
     <properties>
         <java.version>1.7</java.version>
-        <reference-auth-security.version>0.10</reference-auth-security.version>
+        <reference-auth-security.version>0.11-SNAPSHOT</reference-auth-security.version>
         <mitreid.version>1.2.0</mitreid.version>
-        <springframework.version>4.1.7.RELEASE</springframework.version>
-        <springframework.security.oauth.version>2.0.3.RELEASE</springframework.security.oauth.version>
-        <commons-logging.version>1.2</commons-logging.version>
+        <mitreid.springframework.security.oauth.version>2.0.3.RELEASE</mitreid.springframework.security.oauth.version>
+        <mitreid.springframework.security.version>3.2.7.RELEASE</mitreid.springframework.security.version>
+        <mitreid.springframework.version>4.1.7.RELEASE</mitreid.springframework.version>
+        <commons-logging.version>1.1.3</commons-logging.version>
         <commons-lang.version>2.6</commons-lang.version>
         <mysql.connector.version>5.1.34</mysql.connector.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <junit.version>4.8.2</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <javax.inject.version>1</javax.inject.version>
+        <slf4j.version>1.7.7</slf4j.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <artifactId>spring-web</artifactId>
+                <groupId>org.springframework</groupId>
+                <version>${mitreid.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-webmvc</artifactId>
+                <groupId>org.springframework</groupId>
+                <version>${mitreid.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-jdbc</artifactId>
+                <groupId>org.springframework</groupId>
+                <version>${mitreid.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-security-oauth2</artifactId>
+                <groupId>org.springframework.security.oauth</groupId>
+                <version>${mitreid.springframework.security.oauth.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>slf4j-api</artifactId>
+                <groupId>org.slf4j</groupId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-security-config</artifactId>
+                <groupId>org.springframework.security</groupId>
+                <version>${mitreid.springframework.security.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-security-web</artifactId>
+                <groupId>org.springframework.security</groupId>
+                <version>${mitreid.springframework.security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${mitreid.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${mitreid.springframework.security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-ldap</artifactId>
+                <version>${mitreid.springframework.security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${mitreid.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${mitreid.springframework.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -54,20 +121,14 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <type>jar</type>
-            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <type>jar</type>
-            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
-            <type>jar</type>
-            <version>${springframework.security.oauth.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mitre</groupId>
@@ -81,14 +142,6 @@
             <version>${mitreid.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>spring-aop</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-jdbc</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
                     <artifactId>commons-logging</artifactId>
                     <groupId>commons-logging</groupId>
                 </exclusion>
@@ -97,13 +150,11 @@
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <type>jar</type>
             <version>${commons-logging.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mitre</groupId>
             <artifactId>openid-connect-server</artifactId>
-            <type>jar</type>
             <version>${mitreid.version}</version>
         </dependency>
         <dependency>
@@ -120,20 +171,6 @@
             <groupId>org.hspconsortium.reference</groupId>
             <artifactId>hspc-reference-auth-security</artifactId>
             <version>${reference-auth-security.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-security-config</artifactId>
-                    <groupId>org.springframework.security</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-security-web</artifactId>
-                    <groupId>org.springframework.security</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
