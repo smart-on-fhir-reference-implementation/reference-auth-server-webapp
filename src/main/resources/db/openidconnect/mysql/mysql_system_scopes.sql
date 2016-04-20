@@ -1,64 +1,41 @@
-SET AUTOCOMMIT = 0;
+--
+-- Turn off autocommit and start a transaction so that we can use the temp tables
+--
+
+SET AUTOCOMMIT FALSE;
 
 START TRANSACTION;
 
-INSERT INTO system_scope (scope, description, structured, default_scope, restricted) VALUES
-  ('smart/orchestrate_launch', 'Launch orchestration', false, false, true),
-  ('launch', 'Launch context info', true, true, false),
-  ('launch/patient', 'When launching outside an EHR, provide patient context at time of launch', false, true, false),
-  ('launch/encounter', 'When launching outside an EHR, provide encounter context at time of launch', false, false, false),
-  ('launch/location', 'When launching outside an EHR, provide location context at time of launch', false, false, false),
-  ('openid', 'OpenID Connect id_token request', false, false, false),
-  ('profile', 'User Profile Claim', false, false, false),
-  ('user/*.*', 'Read-write all data accessible by the user', false, false, false),
-  ('user/*.read', 'Read all data accessible by the user', false, false, false),
-  ('user/*.write', 'Write all data accessible by the user', false, false, false),
-  ('user/AdverseReaction.read', 'Read all AdverseReactions accessible by the user', false, false, false),
-  ('user/AdverseReaction.write', 'Write all AdverseReactions accessible by the user', false, false, false),
-  ('user/Alert.read', 'Read all Alerts accessible by the user', false, false, false),
-  ('user/Alert.write', 'Write all Alerts accessible by the user', false, false, false),
-  ('user/Condition.read', 'Read all Conditions accessible by the user', false, false, false),
-  ('user/Condition.write', 'Write all Conditions accessible by the user', false, false, false),
-  ('user/Encounter.read', 'Read all Encounters accessible by the user', false, false, false),
-  ('user/Encounter.write', 'Write all Encounters accessible by the user', false, false, false),
-  ('user/FamilyHistory.read', 'Read all FamilyHistory accessible by the user', false, false, false),
-  ('user/FamilyHistory.write', 'Write all FamilyHistory accessible by the user', false, false, false),
-  ('user/Medication.read', 'Read all Medications accessible by the user', false, false, false),
-  ('user/Medication.write', 'Write all Medications accessible by the user', false, false, false),
-  ('user/MedicationPrescription.read', 'Read all MedicationPrescriptions accessible by the user', false, false, false),
-  ('user/MedicationPrescription.write', 'Write all MedicationPrescriptions accessible by the user', false, false, false),
-  ('user/MedicationStatement.read', 'Read all MedicationStatements accessible by the user', false, false, false),
-  ('user/MedicationStatement.write', 'Write all MedicationStatements accessible by the user', false, false, false),
-  ('user/Observation.read', 'Read all Observations accessible by the user', false, false, false),
-  ('user/Observation.write', 'Write all Observations accessible by the user', false, false, false),
-  ('user/Patient.read', 'Read all Patients accessible by the user', false, false, false),
-  ('user/Patient.write', 'Write all Patients accessible by the user', false, false, false),
-  ('user/Substance.read', 'Read all Substances accessible by the user', false, false, false),
-  ('user/Substance.write', 'Write all Substances accessible by the user', false, false, false),
-  ('patient/*.*', 'Read-write all data for a given patient', false, false, false),
-  ('patient/*.read', 'Read all data for a given patient', false, false, false),
-  ('patient/*.write', 'Write all data for a given patient', false, false, false),
-  ('patient/AdverseReaction.read', 'Read all AdverseReactions for a given patient', false, false, false),
-  ('patient/AdverseReaction.write', 'Write all AdverseReactions for a given patient', false, false, false),
-  ('patient/Alert.read', 'Read all Alerts for a given patient', false, false, false),
-  ('patient/Alert.write', 'Write all Alerts for a given patient', false, false, false),
-  ('patient/Condition.read', 'Read all Conditions for a given patient', false, false, false),
-  ('patient/Condition.write', 'Write all Conditions for a given patient', false, false, false),
-  ('patient/Encounter.read', 'Read all Encounters for a given patient', false, false, false),
-  ('patient/Encounter.write', 'Write all Encounters for a given patient', false, false, false),
-  ('patient/FamilyHistory.read', 'Read all FamilyHistory for a given patient', false, false, false),
-  ('patient/FamilyHistory.write', 'Write all FamilyHistory for a given patient', false, false, false),
-  ('patient/MedicationPrescription.read', 'Read all MedicationPrescriptions for a given patient', false, false, false),
-  ('patient/MedicationPrescription.write', 'Write all MedicationPrescriptions for a given patient', false, false, false),
-  ('patient/MedicationStatement.read', 'Read all MedicationStatements for a given patient', false, false, false),
-  ('patient/MedicationStatement.write', 'Write all MedicationStatements for a given patient', false, false, false),
-  ('patient/Observation.read', 'Read all Observations for a given patient', false, false, false),
-  ('patient/Observation.write', 'Write all Observations for a given patient', false, false, false),
-  ('patient/Patient.read', 'Read all Patients for a given patient', false, false, false),
-  ('patient/Patient.write', 'Write all Patients for a given patient', false, false, false);
+--
+-- Insert scope information into the temporary tables.
+-- 
 
+INSERT INTO system_scope_TEMP (scope, description, icon, allow_dyn_reg, default_scope, structured, structured_param_description) VALUES
+  ('openid', 'log in using your identity', 'user', true, true, false, null),
+  ('profile', 'basic profile information', 'list-alt', true, true, false, null),
+  ('smart/orchestrate_launch', 'Orchestrate a launch with EHR context', 'user', true, false, false, null),
+  ('launch', 'Launch with an existing context', 'user', true, false, true, 'Launch from existing context'),
+  ('launch/patient', 'Launch with patient context', 'user', true, false, true, 'Launch patient'),
+  ('launch/encounter', 'Launch with encounter context', 'user', true, false, true, 'Launch encounter'),
+  ('launch/resource', 'Launch with resource context', 'user', true, false, true, 'Launch resource'),
+  ('launch/other', 'Launch with other context', 'user', true, false, true, 'Launch other'), 
+  ('user/Patient.read', 'all FHIR permissions for user', 'user', true, false, false, null), 
+  ('user/*.read', 'Read all FHIR data that you can access', 'user', true, false, false, null), 
+  ('user/*.*', 'All FHIR permissions for data that you can access', 'user', true, false, false, null), 
+  ('patient/*.read', 'Read all FHIR data for a single patient record', 'user', true, false, false, null), 
+  ('patient/*.*', 'All FHIR permissions for a single patient record', 'user', true, false, false, null), 
+  ('offline_access', 'offline access', 'time', true, true, false, null);
+  
+--
+-- Merge the temporary scopes safely into the database. This is a two-step process to keep scopes from being created on every startup with a persistent store.
+--
 
+MERGE INTO system_scope
+  USING (SELECT scope, description, icon, allow_dyn_reg, default_scope, structured, structured_param_description FROM system_scope_TEMP) AS vals(scope, description, icon, allow_dyn_reg, default_scope, structured, structured_param_description)
+  ON vals.scope = system_scope.scope
+  WHEN NOT MATCHED THEN
+    INSERT (scope, description, icon, allow_dyn_reg, default_scope, structured, structured_param_description) VALUES(vals.scope, vals.description, vals.icon, vals.allow_dyn_reg, vals.default_scope, vals.structured, vals.structured_param_description);
 
 COMMIT;
 
-SET AUTOCOMMIT = 1;
+SET AUTOCOMMIT TRUE;
