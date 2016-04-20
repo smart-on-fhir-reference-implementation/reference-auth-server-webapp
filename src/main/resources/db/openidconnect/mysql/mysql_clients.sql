@@ -15,30 +15,30 @@ INSERT INTO client_details_TEMP (client_id, client_secret, client_name, dynamica
 
 --TODO: Curl script for these...
 INSERT INTO client_scope_TEMP (owner_id, scope) VALUES
-    ('client', 'openid'),
-    ('client', 'profile'),
-    ('client', 'smart/orchestrate_launch'),
-    ('client', 'launch'),
-    ('client', 'launch/patient'),
-    ('client', 'launch/encounter'),
-    ('client', 'launch/other'),
-    ('client', 'user/Patient.read'),
-    ('client', 'user/*.*'),
-    ('client', 'user/*.read'),
-    ('client', 'patient/*.*'),
-    ('client', 'patient/*.read'),   
-    ('client', 'offline_access');
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'openid'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'profile'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'smart/orchestrate_launch'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'launch'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'launch/patient'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'launch/encounter'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'launch/other'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'user/Patient.read'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'user/*.*'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'user/*.read'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'patient/*.*'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'patient/*.read'),   
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'offline_access');
 
 
 INSERT INTO client_redirect_uri_TEMP (owner_id, redirect_uri) VALUES
-    ('client', 'http://localhost/'),
-    ('client', 'http://localhost:8080/');
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'http://localhost/'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'http://localhost:8080/');
     
 INSERT INTO client_grant_type_TEMP (owner_id, grant_type) VALUES
-    ('client', 'authorization_code'),
-    ('client', 'urn:ietf:params:oauth:grant_type:redelegate'),
-    ('client', 'implicit'),
-    ('client', 'refresh_token');
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'authorization_code'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'urn:ietf:params:oauth:grant_type:redelegate'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'implicit'),
+    ((SELECT id from client_details_TEMP where client_id = 'client'), 'refresh_token');
     
 -- Merge the temporary clients safely into the database. This is a two-step process to keep clients from being created on every startup with a persistent store.
 --
