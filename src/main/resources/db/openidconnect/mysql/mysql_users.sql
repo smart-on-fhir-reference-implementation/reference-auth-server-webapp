@@ -1,5 +1,3 @@
-SET AUTOCOMMIT = 0;
-
 START TRANSACTION;
 
 INSERT INTO users (username, password, enabled) VALUES
@@ -18,5 +16,3 @@ INSERT INTO authorities (username, authority) VALUES
   ('user','ROLE_USER');
 
 COMMIT;
-
-SET AUTOCOMMIT = 1;

@@ -1,5 +1,3 @@
-SET AUTOCOMMIT = 0;
-
 START TRANSACTION;
 
 -- My Web App
@@ -8,5 +6,3 @@ DELETE FROM client_scope WHERE owner_id =  (SELECT id from client_details where 
 DELETE FROM client_details WHERE client_id = 'my_web_app';
 
 COMMIT;
-
-SET AUTOCOMMIT = 1;
