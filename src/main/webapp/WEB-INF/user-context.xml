@@ -42,7 +42,7 @@
 	</security:http>
 
 	<bean id="logoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
-		<property name="targetUrlParameter" value="hspcRedirectUrl"/>
+		<property name="targetUrlParameter" value="${LOGOUT_SUCCESS_URL_PROPERTY}"/>
 	</bean>
 
 	<security:http disable-url-rewriting="true" use-expressions="true"> 
